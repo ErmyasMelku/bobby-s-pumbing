@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bobby T's Plumbing | Seattle & North King County</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  function showPage(name, el) {
+    if (el) { try { el.blur(); } catch(e){} }
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    var target = document.getElementById('page-' + name);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+    var link = document.getElementById('nav-' + name);
+    if (link) link.classList.add('active');
+    window.scrollTo(0, 0);
+    return false;
+  }
+  function toggleMenu() {
+    var menu = document.getElementById('mobileMenu');
+    if (menu) menu.classList.toggle('open');
+    return false;
+  }
+  function submitForm() {
+    var success = document.getElementById('formSuccess');
+    if (success) { success.style.display = 'block'; setTimeout(function() { success.style.display = 'none'; }, 6000); }
+    return false;
+  }
+  window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) { e.preventDefault(); });
+    });
+  });
+</script>
+<style>
+  :root {
+    --navy: #0b1f35;
+    --navy-mid: #132d4a;
+    --navy-light: #1e4068;
+    --blue: #2a7fc1;
+    --blue-light: #3da9e5;
+    --gold: #e8a832;
+    --gold-light: #f5c55a;
+    --cream: #f7f4ef;
+    --cream-dark: #ede9e1;
+    --white: #ffffff;
+    --text-dark: #0b1f35;
+    --text-mid: #3d5572;
+    --text-light: #7a92a8;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(11,31,53,0.10);
+    --shadow-lg: 0 12px 48px rgba(11,31,53,0.16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(11,31,53,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--white); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-logo-icon {
+    width: 36px; height: 36px; background: var(--blue);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .nav-links {
+    display: flex; gap: 28px; list-style: none; align-items: center;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links .active { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    padding: 9px 20px; border-radius: 50px;
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .mobile-menu {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: var(--navy); z-index: 999;
+    flex-direction: column; padding: 32px 24px; gap: 8px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 20px; font-weight: 600; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu .mobile-cta {
+    margin-top: 24px; background: var(--gold); color: var(--navy);
+    text-align: center; border-radius: 12px; padding: 16px;
+    font-size: 18px; font-weight: 700; border: none;
+  }
+
+  /* ─── PAGES ─── */
+  .page { display: none; min-height: 100vh; padding-top: 64px; }
+  .page.active { display: block; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy);
+    position: relative; overflow: hidden;
+    padding: 80px 24px 64px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(42,127,193,0.18) 0%, transparent 65%),
+                radial-gradient(ellipse at 10% 80%, rgba(232,168,50,0.10) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    position: relative; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,168,50,0.15); border: 1px solid rgba(232,168,50,0.3);
+    color: var(--gold); border-radius: 50px;
+    padding: 6px 14px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.08; font-weight: 800;
+    color: var(--white); margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 em { font-style: normal; color: var(--blue-light); }
+  .hero-sub {
+    font-size: 17px; color: rgba(255,255,255,0.62);
+    line-height: 1.7; margin-bottom: 36px; max-width: 520px;
+  }
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 15px; text-decoration: none;
+    transition: all 0.2s; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,168,50,0.35); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    transition: all 0.2s; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+  .hero-trust {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .hero-trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 500;
+  }
+  .hero-trust-item::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 14px; }
+
+  /* Hero card */
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 28px;
+    backdrop-filter: blur(10px);
+  }
+  .hero-card-title {
+    font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;
+  }
+  .hc-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .hc-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .hc-icon {
+    width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .hc-icon.blue { background: rgba(42,127,193,0.2); }
+  .hc-icon.gold { background: rgba(232,168,50,0.15); }
+  .hc-icon.green { background: rgba(52,168,83,0.15); }
+  .hc-icon.red { background: rgba(220,50,50,0.15); }
+  .hc-text { font-size: 14px; font-weight: 600; color: var(--white); line-height: 1.3; }
+  .hc-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+  .hero-phone-bar {
+    background: rgba(255,255,255,0.07); border-radius: 12px;
+    padding: 14px 18px; margin-top: 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .hp-label { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 500; }
+  .hp-num { font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: -0.5px; }
+  .hp-cta {
+    background: var(--blue); color: white;
+    padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .hp-cta:hover { background: var(--blue-light); }
+
+
+
+  /* ─── SECTION COMMONS ─── */
+  .section { padding: 80px 24px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 700; color: var(--blue);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--text-mid); line-height: 1.65;
+    max-width: 580px;
+  }
+  .section-header { margin-bottom: 48px; }
+
+  /* ─── SERVICES SECTION ─── */
+  .services-bg { background: var(--cream); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .service-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 28px; border: 1px solid var(--cream-dark);
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--blue); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(42,127,193,0.2); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .sc-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(42,127,193,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 16px;
+  }
+  .sc-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+  .sc-desc { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    background: var(--navy); padding: 48px 24px;
+  }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; font-weight: 800;
+    color: var(--gold); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 14px; color: rgba(255,255,255,0.55); font-weight: 500; }
+
+  /* ─── TESTIMONIALS ─── */
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .review-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 28px; border: 1px solid var(--cream-dark);
+    display: flex; flex-direction: column; gap: 16px;
+    transition: box-shadow 0.25s;
+  }
+  .review-card:hover { box-shadow: var(--shadow); }
+  .stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; }
+  .review-text {
+    font-size: 15px; color: var(--text-mid); line-height: 1.7;
+    flex: 1; font-style: italic;
+  }
+  .review-text::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 28px; color: var(--blue-light); line-height: 0; vertical-align: -10px; margin-right: 4px; }
+  .reviewer {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 16px; border-top: 1px solid var(--cream-dark);
+  }
+  .reviewer-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--blue); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: white; flex-shrink: 0;
+  }
+  .reviewer-name { font-weight: 700; font-size: 14px; }
+  .reviewer-loc { font-size: 12px; color: var(--text-light); }
+
+  /* ─── ABOUT PAGE ─── */
+  .about-hero {
+    background: var(--navy); padding: 80px 24px 0;
+    position: relative; overflow: hidden;
+  }
+  .about-hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end;
+  }
+  .about-content { padding-bottom: 64px; }
+  .about-image-block {
+    background: rgba(255,255,255,0.05); border-radius: 20px 20px 0 0;
+    border: 1px solid rgba(255,255,255,0.1); border-bottom: none;
+    padding: 32px; display: flex; flex-direction: column; gap: 16px; align-self: end;
+  }
+  .ab-stat { display: flex; align-items: center; gap: 16px; }
+  .ab-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 800; color: var(--gold); line-height: 1;
+  }
+  .ab-stat-label { font-size: 14px; color: rgba(255,255,255,0.55); font-weight: 500; }
+  .ab-divider { height: 1px; background: rgba(255,255,255,0.08); }
+  .about-body { background: var(--cream); }
+  .about-body-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+  }
+  .about-text p { font-size: 16px; color: var(--text-mid); line-height: 1.8; margin-bottom: 18px; }
+  .license-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--cream-dark);
+    border-radius: 10px; padding: 10px 16px; font-size: 13px; font-weight: 600;
+    color: var(--text-dark); margin-top: 4px;
+  }
+  .values-list { display: flex; flex-direction: column; gap: 16px; }
+  .value-item {
+    background: var(--white); border-radius: var(--radius-sm);
+    padding: 20px; border: 1px solid var(--cream-dark);
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .vi-icon {
+    width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+    background: rgba(42,127,193,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .vi-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .vi-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+  .areas-section { background: var(--white); }
+  .areas-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px;
+  }
+  .area-pill {
+    background: var(--cream); border: 1px solid var(--cream-dark);
+    border-radius: var(--radius-sm); padding: 12px 16px;
+    font-size: 14px; font-weight: 600; color: var(--navy); text-align: center;
+    transition: all 0.2s;
+  }
+  .area-pill:hover { background: var(--blue); color: white; border-color: var(--blue); transform: translateY(-2px); }
+
+  /* ─── SERVICES PAGE ─── */
+  .services-full-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .sf-card {
+    background: var(--white); border: 1px solid var(--cream-dark);
+    border-radius: var(--radius-sm); padding: 20px;
+    display: flex; align-items: center; gap: 14px;
+    transition: all 0.2s;
+  }
+  .sf-card:hover { border-color: var(--blue); background: rgba(42,127,193,0.03); transform: translateX(4px); }
+  .sf-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+  .sf-name { font-size: 15px; font-weight: 600; color: var(--navy); }
+  .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .tip-card {
+    background: var(--white); border: 1px solid var(--cream-dark);
+    border-radius: var(--radius); padding: 28px;
+  }
+  .tip-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+  .tip-card p { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
+
+  /* ─── CONTACT PAGE ─── */
+  .contact-hero { background: var(--navy); padding: 64px 24px; }
+  .contact-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+  }
+  .contact-info { color: white; }
+  .contact-info h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px); font-weight: 800;
+    margin-bottom: 16px; color: var(--white);
+  }
+  .contact-info p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 32px; }
+  .contact-detail {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .cd-icon {
+    width: 44px; height: 44px; background: rgba(255,255,255,0.08);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .cd-label { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .cd-value { font-size: 16px; font-weight: 600; color: var(--white); margin-top: 3px; }
+  .cd-value a { color: var(--gold); text-decoration: none; }
+  .hours-table { width: 100%; margin-top: 12px; }
+  .hours-table td { font-size: 14px; padding: 6px 0; color: rgba(255,255,255,0.7); }
+  .hours-table td:last-child { text-align: right; font-weight: 600; color: var(--white); }
+  .emergency-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(220,50,50,0.2); border: 1px solid rgba(220,50,50,0.3);
+    color: #ff8080; padding: 6px 14px; border-radius: 50px;
+    font-size: 13px; font-weight: 600; margin-top: 8px;
+  }
+  .emergency-badge::before { content: ''; width: 6px; height: 6px; background: #ff5555; border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .contact-form-card {
+    background: var(--white); border-radius: 20px;
+    padding: 36px; box-shadow: var(--shadow-lg);
+  }
+  .form-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--navy); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .form-group label { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 12px 16px; border-radius: var(--radius-sm);
+    border: 1.5px solid var(--cream-dark); font-family: 'Manrope', sans-serif;
+    font-size: 15px; color: var(--text-dark); background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    resize: vertical;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--blue); box-shadow: 0 0 0 3px rgba(42,127,193,0.12);
+  }
+  .form-group textarea { min-height: 100px; }
+  .form-submit {
+    width: 100%; padding: 15px; border-radius: var(--radius-sm);
+    background: var(--gold); color: var(--navy);
+    font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 700;
+    border: none; cursor: pointer; transition: all 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .form-success {
+    display: none; text-align: center; padding: 20px;
+    background: rgba(52,168,83,0.1); border: 1px solid rgba(52,168,83,0.3);
+    border-radius: var(--radius-sm); color: #1a6e31; font-weight: 600;
+  }
+  .payment-icons {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; align-items: center;
+  }
+  .pay-badge {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm); padding: 8px 14px;
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
+  }
+  .pay-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 10px; font-weight: 500; }
+
+
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--navy); padding: 56px 24px 32px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    margin-bottom: 48px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800;
+    color: white; margin-bottom: 14px; display: block;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 20px; }
+  .footer-phone { font-size: 20px; font-weight: 700; color: var(--gold); text-decoration: none; display: block; }
+  .footer-col-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; color: rgba(255,255,255,0.3);
+  }
+  .bbb-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm); padding: 8px 14px;
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6);
+    margin-top: 16px;
+  }
+
+  /* ─── PAGE HERO INTERNAL ─── */
+  .page-hero {
+    background: var(--navy); padding: 56px 24px 48px; text-align: center;
+  }
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 50px); font-weight: 800;
+    color: white; margin-bottom: 12px;
+  }
+  .page-hero p { font-size: 17px; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .hero { padding: 56px 20px 48px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .about-hero-inner { grid-template-columns: 1fr; }
+    .about-image-block { display: none; }
+    .about-body-inner { grid-template-columns: 1fr; gap: 32px; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .specials-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-inner > div:first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-num { font-size: 36px; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { justify-content: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .discount-banner { font-size: 13px; gap: 8px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.55s ease both; }
+  .delay-1 { animation-delay: 0.08s; }
+  .delay-2 { animation-delay: 0.16s; }
+  .delay-3 { animation-delay: 0.24s; }
+  .delay-4 { animation-delay: 0.32s; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav">
+  <a href="javascript:void(0)" class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-icon">🔧</div>
+    Bobby<span>T's</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="javascript:void(0)" class="active" id="nav-home" onclick="showPage('home')">Home</a></li>
+    <li><a href="javascript:void(0)" id="nav-about" onclick="showPage('about')">About</a></li>
+    <li><a href="javascript:void(0)" id="nav-services" onclick="showPage('services')">Services</a></li>
+    <li><a href="javascript:void(0)" id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li>
+    <li><a href="javascript:void(0)" id="nav-contact" onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <a href="tel:2065790529" class="nav-cta">📞 206-579-0529</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="javascript:void(0)" onclick="showPage('home');toggleMenu()">Home</a>
+  <a href="javascript:void(0)" onclick="showPage('about');toggleMenu()">About</a>
+  <a href="javascript:void(0)" onclick="showPage('services');toggleMenu()">Services</a>
+  <a href="javascript:void(0)" onclick="showPage('reviews');toggleMenu()">Reviews</a>
+  <a href="javascript:void(0)" onclick="showPage('contact');toggleMenu()">Contact</a>
+  <a href="tel:2065790529" class="mobile-cta">📞 Call 206-579-0529</a>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag fade-up">Serving Seattle Since 2007</div>
+        <h1 class="fade-up delay-1">Seattle's most <em>trusted</em> family plumber</h1>
+        <p class="hero-sub fade-up delay-2">20+ years of expert plumbing across North King & South Snohomish Counties. Licensed, bonded, insured — with a 1-year warranty on all work.</p>
+        <div class="hero-btns fade-up delay-3">
+          <a href="tel:2065790529" class="btn-primary">📞 Call for Free Estimate</a>
+          <a href="javascript:void(0)" class="btn-outline" onclick="showPage('services')">View Services →</a>
+        </div>
+        <div class="hero-trust fade-up delay-4">
+          <div class="hero-trust-item">BBB Accredited</div>
+          <div class="hero-trust-item">Free Estimates</div>
+          <div class="hero-trust-item">1-Year Warranty</div>
+          <div class="hero-trust-item">Emergency Service</div>
+        </div>
+      </div>
+      <div class="hero-card fade-up delay-2">
+        <div class="hero-card-title">Why homeowners choose us</div>
+        <div class="hc-item">
+          <div class="hc-icon blue">🏆</div>
+          <div>
+            <div class="hc-text">BBB Accredited — A+ Rating</div>
+            <div class="hc-sub">Western Washington — verified</div>
+          </div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-icon gold">🌿</div>
+          <div>
+            <div class="hc-text">Eco-Friendly Approach</div>
+            <div class="hc-sub">No harsh chemical drain cleaners</div>
+          </div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-icon red">⚡</div>
+          <div>
+            <div class="hc-text">Emergency Services</div>
+            <div class="hc-sub">Available beyond normal hours</div>
+          </div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-icon green">✅</div>
+          <div>
+            <div class="hc-text">1-Year Warranty</div>
+            <div class="hc-sub">Written guarantee on all work</div>
+          </div>
+        </div>
+        <div class="hero-phone-bar">
+          <div>
+            <div class="hp-label">Call us anytime</div>
+            <div class="hp-num">206-579-0529</div>
+          </div>
+          <a href="tel:2065790529" class="hp-cta">Call Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="section services-bg">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Full-service plumbing for every job</h2>
+        <p class="section-sub">From emergency repairs to full remodels — Bob and his crew handle it all across the greater Seattle area.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="sc-icon">🚰</div>
+          <div class="sc-title">Drain Cleaning & Repair</div>
+          <div class="sc-desc">Professional, eco-friendly drain clearing. We never use harsh chemical cleaners that damage your pipes.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🔥</div>
+          <div class="sc-title">Water Heater Services</div>
+          <div class="sc-desc">Same-day repair and installation. Parts stocked on the van — no second trip needed.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🔍</div>
+          <div class="sc-title">Leak Detection</div>
+          <div class="sc-desc">Fast, accurate leak detection to protect your home from hidden water damage before it gets costly.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🏗️</div>
+          <div class="sc-title">Remodels & Repiping</div>
+          <div class="sc-desc">Bath and kitchen remodels, full house repiping with PEX — competitive bids, quality execution.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🚽</div>
+          <div class="sc-title">Fixtures & Toilets</div>
+          <div class="sc-desc">Installation and repair of faucets, sinks, toilets, tubs, and showers — done right first time.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🛠️</div>
+          <div class="sc-title">Sewer & Water Lines</div>
+          <div class="sc-desc">Sewer repair and replacement, water main repair, water service installation from meter to house.</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:36px;">
+        <a href="javascript:void(0)" class="btn-primary" onclick="showPage('services')" style="display:inline-flex;">See All Services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years of experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">A+</div>
+        <div class="stat-label">BBB Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1yr</div>
+        <div class="stat-label">Written warranty</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">17+</div>
+        <div class="stat-label">Service areas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS PREVIEW -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Customer Reviews</div>
+        <h2 class="section-title">Trusted by Seattle homeowners</h2>
+        <p class="section-sub">Don't take our word for it — here's what real customers say about Bobby T's Plumbing.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">On time, professional, fast, thorough, stocked with parts and very reasonable. I went with Bobby T's because it's a family business — and it shows. They genuinely care and have pride in their work. Highly recommended!</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">N</div>
+            <div>
+              <div class="reviewer-name">Nancy F.</div>
+              <div class="reviewer-loc">Seattle, WA</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Bobby knew exactly what the problem was, arrived within the hour, and had the water heater fixed by 10:15am. He even gave me a senior discount I hadn't asked for!</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">R</div>
+            <div>
+              <div class="reviewer-name">RS Chan</div>
+              <div class="reviewer-loc">Seattle, WA</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">On time, professional, fast, thorough, stocked with parts and very reasonable. The fact that it's a family business really shows — they genuinely care.</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">N</div>
+            <div>
+              <div class="reviewer-name">Nancy F.</div>
+              <div class="reviewer-loc">Edmonds, WA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:36px;">
+        <a href="javascript:void(0)" class="btn-primary" onclick="showPage('reviews')" style="display:inline-flex;">Read All Reviews →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section style="background:var(--cream);padding:64px 24px;">
+    <div style="max-width:700px;margin:0 auto;text-align:center;">
+      <div class="section-label">Ready to get started?</div>
+      <h2 class="section-title">Put your mind at ease — call Bobby T's</h2>
+      <p class="section-sub" style="margin:0 auto 32px;">Free estimates, honest pricing, guaranteed workmanship. Serving Seattle, Shoreline, Edmonds, Lynnwood, and all of North King County.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="tel:2065790529" class="btn-primary">📞 206-579-0529</a>
+        <a href="javascript:void(0)" class="btn-outline" onclick="showPage('contact')" style="color:var(--navy);border-color:rgba(11,31,53,0.25);">Send a Message →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-logo">Bobby<span>T's</span> Plumbing</span>
+        <p class="footer-desc">Family-owned plumbing company serving North King & South Snohomish County since 2007. Licensed, bonded, and insured. License # BOBBYTP939BR.</p>
+        <a href="tel:2065790529" class="footer-phone">206-579-0529</a>
+        <div class="bbb-badge">🏆 BBB Accredited Business — A+ Rating</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('about')">About Us</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('reviews')">Reviews</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Drain Cleaning</a></li>
+          <li><a href="#">Water Heaters</a></li>
+          <li><a href="#">Leak Detection</a></li>
+          <li><a href="#">Repiping</a></li>
+          <li><a href="#">Sewer Repair</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Hours</div>
+        <ul class="footer-links">
+          <li><a href="#">Mon–Fri: 8am – 5pm</a></li>
+          <li><a href="#">Saturday: 8am – 12pm</a></li>
+          <li><a href="#" style="color:var(--gold)">Emergency Available</a></li>
+        </ul>
+        <div style="margin-top:16px;">
+          <div class="footer-col-title">We Accept</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:14px;line-height:2;">Visa · Mastercard<br>Cash · Check</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Bobby T's Plumbing Inc. · Shoreline, WA · <a href="/cdn-cgi/l/email-protection#27454845455e5354574b524a454e4940675e464f48480944484a" style="color:var(--gold);text-decoration:none;"><span class="__cf_email__" data-cfemail="d7b5b8b5b5aea3a4a7bba2bab5beb9b097aeb6bfb8b8f9b4b8ba">[email&#160;protected]</span></a></span>
+      <span>License # BOBBYTP939BR</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: ABOUT
+═══════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section class="about-hero">
+    <div class="about-hero-inner">
+      <div class="about-content">
+        <div class="section-label" style="color:var(--gold)">Our Story</div>
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,52px);font-weight:800;color:white;line-height:1.1;margin-bottom:18px;letter-spacing:-1px;">Family-owned, Seattle-proud since 2007</h1>
+        <p style="font-size:17px;color:rgba(255,255,255,0.6);line-height:1.7;max-width:520px;">Bob Thayer started his plumbing career in Washington State, working for several companies before founding Bobby T's Plumbing with his wife, Donna. Over 20 years later, they're still at it — delivering honest, quality work backed by a written warranty.</p>
+      </div>
+      <div class="about-image-block">
+        <div class="ab-stat">
+          <div class="ab-stat-num">20+</div>
+          <div class="ab-stat-label">Years of professional plumbing experience</div>
+        </div>
+        <div class="ab-divider"></div>
+        <div class="ab-stat">
+          <div class="ab-stat-num">17+</div>
+          <div class="ab-stat-label">Cities served across King & Snohomish Counties</div>
+        </div>
+        <div class="ab-divider"></div>
+        <div class="ab-stat">
+          <div class="ab-stat-num">1yr</div>
+          <div class="ab-stat-label">Written warranty on all plumbing work</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about-body">
+    <div class="about-body-inner">
+      <div class="about-text">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">Plumbing with integrity</h2>
+        <p>We are a family-owned business with over 20 years of professional experience. Bob holds a journeyman's plumbing license and has an extensive, hands-on knowledge of every aspect of the trade — from simple faucet repairs to full-house repiping.</p>
+        <p>Bobby T's is licensed, bonded, and insured. All our work comes with a one-year warranty. We believe in giving you an honest estimate, showing up on time, and cleaning up after ourselves — every single time.</p>
+        <p>We're also committed to eco-friendly plumbing practices. That means we never use harsh chemical drain cleaners that damage your pipes and harm the water supply. We fix problems properly, so they stay fixed.</p>
+        <div class="license-badge">🛡️ License # BOBBYTP939BR · Licensed · Bonded · Insured</div>
+      </div>
+      <div>
+        <div class="section-label">Our Values</div>
+        <h2 class="section-title">What makes us different</h2>
+        <div class="values-list">
+          <div class="value-item">
+            <div class="vi-icon">⏰</div>
+            <div>
+              <div class="vi-title">Always on time</div>
+              <div class="vi-text">We confirm appointments the evening before and arrive when we say we will — no waiting around all day.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="vi-icon">🌿</div>
+            <div>
+              <div class="vi-title">Eco-friendly approach</div>
+              <div class="vi-text">No chemical drain cleaners. We protect your pipes and the water supply with safe, effective methods.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="vi-icon">📦</div>
+            <div>
+              <div class="vi-title">Parts stocked on the van</div>
+              <div class="vi-text">Bob carries a wide selection of parts, meaning most jobs are completed in one visit — no extra trips or delays.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="vi-icon">✅</div>
+            <div>
+              <div class="vi-title">Done right, first time</div>
+              <div class="vi-text">A 1-year written warranty backs all our work. We've almost never had to use it — because we get it right.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section areas-section">
+    <div class="section-inner">
+      <div class="section-header" style="text-align:center;">
+        <div class="section-label">Coverage Area</div>
+        <h2 class="section-title">Serving your neighborhood</h2>
+        <p class="section-sub" style="margin:0 auto;">We proudly serve North King and South Snohomish Counties, including all of these cities and more.</p>
+      </div>
+      <div class="areas-grid">
+        <div class="area-pill">Seattle</div>
+        <div class="area-pill">Shoreline</div>
+        <div class="area-pill">Lake City</div>
+        <div class="area-pill">Edmonds</div>
+        <div class="area-pill">Mountlake Terrace</div>
+        <div class="area-pill">Lynnwood</div>
+        <div class="area-pill">Mukilteo</div>
+        <div class="area-pill">Everett</div>
+        <div class="area-pill">Bellevue</div>
+        <div class="area-pill">Redmond</div>
+        <div class="area-pill">Woodinville</div>
+        <div class="area-pill">Bothell</div>
+        <div class="area-pill">Kenmore</div>
+        <div class="area-pill">Kirkland</div>
+        <div class="area-pill">Mill Creek</div>
+        <div class="area-pill">Medina</div>
+        <div class="area-pill">Clyde Hill</div>
+        <div class="area-pill">Richmond Beach</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--cream);padding:64px 24px;text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+      <h2 class="section-title">Ready to get started?</h2>
+      <p style="color:var(--text-mid);margin-bottom:28px;">Call for a free estimate or send us a message — we'll get back to you promptly.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="tel:2065790529" class="btn-primary">📞 206-579-0529</a>
+        <a href="javascript:void(0)" class="btn-outline" onclick="showPage('contact')" style="color:var(--navy);border-color:rgba(11,31,53,0.25);">Contact Us →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-logo">Bobby<span>T's</span> Plumbing</span>
+        <p class="footer-desc">Family-owned plumbing company serving North King & South Snohomish County since 2007. Licensed, bonded, and insured. License # BOBBYTP939BR.</p>
+        <a href="tel:2065790529" class="footer-phone">206-579-0529</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('about')">About Us</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('reviews')">Reviews</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Hours</div>
+        <ul class="footer-links">
+          <li><a href="#">Mon–Fri: 8am – 5pm</a></li>
+          <li><a href="#">Saturday: 8am – 12pm</a></li>
+          <li><a href="#" style="color:var(--gold)">Emergency Available</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:2065790529">206-579-0529</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#fd9f929f9f84898e8d9188909f94939abd849c959292d39e9290"><span class="__cf_email__" data-cfemail="93f1fcf1f1eae7e0e3ffe6fef1fafdf4d3eaf2fbfcfcbdf0fcfe">[email&#160;protected]</span></a></li>
+          <li><a href="#">Shoreline, WA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Bobby T's Plumbing Inc.</span>
+      <span>License # BOBBYTP939BR</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: SERVICES
+═══════════════════════════════════════ -->
+<div class="page" id="page-services">
+  <section class="page-hero">
+    <div class="section-label" style="color:var(--gold);margin-bottom:10px;">What We Offer</div>
+    <h1>Our Plumbing Services</h1>
+    <p>Over 20 years of expertise across residential, remodels, and emergency plumbing — serving all of greater Seattle.</p>
+  </section>
+
+  <section class="section services-bg">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Core Services</div>
+        <h2 class="section-title">Everything your home needs</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="sc-icon">🚰</div>
+          <div class="sc-title">Drain Cleaning & Maintenance</div>
+          <div class="sc-desc">Safe, eco-friendly drain clearing. We snake and jet-clean drains without harsh chemicals that degrade your pipes over time.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🔥</div>
+          <div class="sc-title">Water Heater Repair & Install</div>
+          <div class="sc-desc">Same-day service available. Bob carries parts on his van — most heaters are repaired or replaced the same morning you call.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🔍</div>
+          <div class="sc-title">Leak Detection & Repair</div>
+          <div class="sc-desc">Hidden leaks can cause serious structural damage. We locate and fix water leaks before they become expensive problems.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🏠</div>
+          <div class="sc-title">Bath & Kitchen Remodeling</div>
+          <div class="sc-desc">Full plumbing for remodels — tubs, showers, sinks, faucets, and garbage disposals. Competitive bids, clean execution.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">💧</div>
+          <div class="sc-title">Repiping (PEX & Copper)</div>
+          <div class="sc-desc">Whole-house repipes with PEX for increased pressure and longevity. Written warranty included.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🛠️</div>
+          <div class="sc-title">Sewer Line Repair & Replacement</div>
+          <div class="sc-desc">From cleanouts to full sewer replacements — we handle residential sewer work thoroughly and efficiently.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🌊</div>
+          <div class="sc-title">Water Main & Service Lines</div>
+          <div class="sc-desc">Water service installation from meter to house. Products with manufacturer warranties included.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">🏗️</div>
+          <div class="sc-title">New Construction & Remodels</div>
+          <div class="sc-desc">Residential new construction plumbing, septic systems, and full-house installations done to code.</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">⚡</div>
+          <div class="sc-title">Emergency Plumbing</div>
+          <div class="sc-desc">Plumbing emergencies don't wait. Call us — Bob and crew respond to urgent issues beyond regular hours when possible.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Full Service List</div>
+        <h2 class="section-title">Every service we provide</h2>
+        <p class="section-sub">Don't see what you need? Call us — with 20+ years of experience, chances are we handle it.</p>
+      </div>
+      <div class="services-full-grid">
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Bath & Kitchen Remodeling</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Clogged Drains</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Competitive Bids</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Custom Plumbing & Heating</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Drain Cleaning</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Drain Maintenance & Repair</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Emergency Service</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Free Estimates</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Inspections</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Insurance Work</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Leak Detection</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Maintenance & Repair</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">New Construction</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">New Plumbing Installations</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Pumps</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Remodeling</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Repiping</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Same-Day Service</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Septic Systems</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Sewer Repair & Replacement</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Sinks & Faucets</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Toilets</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Troubleshooting</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Tubs & Air Lines</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Water Heaters</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Water Main Repair</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Water Service Installation</div></div>
+        <div class="sf-card"><div class="sf-dot"></div><div class="sf-name">Whole-Home Water Filters</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eco Tips -->
+  <section class="section services-bg">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Eco-Friendly Tips</div>
+        <h2 class="section-title">Save money & protect your pipes</h2>
+        <p class="section-sub">Bobby T's cares about your home and the environment. Here's expert advice to keep your plumbing in top shape.</p>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h3>🚫 Skip the chemical drain cleaners</h3>
+          <p>Those "drain cleaning" liquids are corrosive by design — they eat the clog, and then keep eating your pipes. If a drain doesn't clear right away, the chemical just sits in your pipe causing damage. Call Bobby instead for safe, proper drain clearing.</p>
+        </div>
+        <div class="tip-card">
+          <h3>🥦 Use your garbage disposal wisely</h3>
+          <p>Even with a garbage disposal, scrape large food scraps into compost or trash. Disposals weren't designed to handle big chunks all at once — over time, that builds up and causes blockages. Compost is better for your pipes and the planet.</p>
+        </div>
+        <div class="tip-card">
+          <h3>🌊 Know your water service warranty</h3>
+          <p>When we install water service lines from the meter to your house, we use products that come with manufacturer warranties — added peace of mind on top of our standard 1-year workmanship guarantee.</p>
+        </div>
+        <div class="tip-card">
+          <h3>🔧 Don't ignore slow drains</h3>
+          <p>A slow drain is a warning. Ignoring it means the blockage grows until you have a complete backup. Early intervention is always cheaper and less disruptive than an emergency fix — call us at the first sign of trouble.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-logo">Bobby<span>T's</span> Plumbing</span>
+        <p class="footer-desc">Family-owned plumbing company serving North King & South Snohomish County since 2007.</p>
+        <a href="tel:2065790529" class="footer-phone">206-579-0529</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('reviews')">Reviews</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Hours</div>
+        <ul class="footer-links">
+          <li><a href="#">Mon–Fri: 8am – 5pm</a></li>
+          <li><a href="#">Saturday: 8am – 12pm</a></li>
+          <li><a href="#" style="color:var(--gold)">Emergency Available</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:2065790529">206-579-0529</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#77151815150e0304071b021a151e1910370e161f18185914181a">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Bobby T's Plumbing Inc.</span>
+      <span>License # BOBBYTP939BR</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: REVIEWS
+═══════════════════════════════════════ -->
+<div class="page" id="page-reviews">
+  <section class="page-hero">
+    <div class="section-label" style="color:var(--gold);margin-bottom:10px;">What Customers Say</div>
+    <h1>Plumbing Reviews</h1>
+    <p>Real stories from real Seattle homeowners — see why Bobby T's is the area's most recommended plumber.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:48px;align-items:center;">
+        <div style="background:var(--navy);border-radius:var(--radius);padding:24px 32px;color:white;text-align:center;min-width:160px;">
+          <div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:800;color:var(--gold);line-height:1;">5.0</div>
+          <div style="color:var(--gold);font-size:20px;letter-spacing:3px;">★★★★★</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:6px;">Avg. customer rating</div>
+        </div>
+        <div style="flex:1;min-width:280px;">
+          <div class="section-label">Verified Reviews</div>
+          <h2 class="section-title" style="margin-bottom:10px;">Our customers keep coming back</h2>
+          <p style="color:var(--text-mid);font-size:16px;">Every review below is from a real customer, posted on Google, Yelp, or shared directly. We've never had to ask twice.</p>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Can't go wrong with Bobby T's Plumbing. Bobby arrived almost early, and got the job done in an hour. Very personable young man. I highly recommend him.</p>
+          <div class="reviewer"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Pam R.</div><div class="reviewer-loc">Burst pipe repair</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Bobby gave an accurate estimate, arrived when he said he would, and they cleaned up after themselves. Actually left my laundry room in better shape than they found it. The 1-year warranty gave me real peace of mind.</p>
+          <div class="reviewer"><div class="reviewer-avatar">H</div><div><div class="reviewer-name">Happy Customer</div><div class="reviewer-loc">3 separate jobs</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Honest and fair. I would recommend him to my mother. He knew exactly what the problem was — read more on Yelp.</p>
+          <div class="reviewer"><div class="reviewer-avatar">D</div><div><div class="reviewer-name">Dong L.</div><div class="reviewer-loc">Via Yelp</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">I called Bobby at about 9am. He said he'd need 30–45 minutes to grab parts and be at my house within the hour. He arrived at 9:30 and had the water heater fixed by 10:15. He even gave me a senior discount I hadn't asked for!</p>
+          <div class="reviewer"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">RS Chan</div><div class="reviewer-loc">Water heater repair</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">On time, professional, fast, thorough, stocked with parts and very reasonable. I went with Bobby T's because of it being a family business and it shows — they genuinely care and have pride in their work!</p>
+          <div class="reviewer"><div class="reviewer-avatar">N</div><div><div class="reviewer-name">Nancy F.</div><div class="reviewer-loc">General repairs</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">I've used Bobby T's for over 3 years on many rental property projects. He always has the right parts on his van, completes work on time, cleans up after, and is very well mannered around my tenants. Highly recommend.</p>
+          <div class="reviewer"><div class="reviewer-avatar">M</div><div><div class="reviewer-name">Multi-Family Property Owner</div><div class="reviewer-loc">Rental properties</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Bobby repiped my entire house with PEX and my water pressure is fantastic! Very competitive, detailed and professional proposal. Read full review on Yelp.</p>
+          <div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Stacy K.</div><div class="reviewer-loc">Full repipe · Via Yelp</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Our bathtub was clogged and after many failed attempts to snake it, we called Bobby. He explained the problem in detail over the phone and in person, then fixed it quickly and affordably the next morning. Will definitely call again.</p>
+          <div class="reviewer"><div class="reviewer-avatar">K</div><div><div class="reviewer-name">Kira</div><div class="reviewer-loc">Bathtub clog</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Had Bob do two bath remodels in Edmonds over the past year. He provided a competitive bid, was on time, and did the work exactly as requested with no extras. Also installed a whole-house water filter. Very satisfied.</p>
+          <div class="reviewer"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Randy</div><div class="reviewer-loc">2 bath remodels, Edmonds</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Bobby came out during the December blizzard when a pipe froze — in snow that few dared drive in. Then came back for a bath remodel. On time both times, great work, and very courteous.</p>
+          <div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">AJ</div><div class="reviewer-loc">Frozen pipe + remodel</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">After a salesman at a "big name" company tried to up-sell me endlessly, I called Bobby T's for a second opinion. The plumber arrived 10 minutes early, gave a fair quote, guaranteed it in writing, and my contractor friend said the work was nicely done.</p>
+          <div class="reviewer"><div class="reviewer-avatar">J</div><div><div class="reviewer-name">Joseph</div><div class="reviewer-loc">Bathroom remodel</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Found Bobby T's through DexKnows based on positive reviews — good strategy. Service was excellent, timely, and my issues were resolved quickly by Bob and Keith. Professional, guaranteed work. Thank you!</p>
+          <div class="reviewer"><div class="reviewer-avatar">H</div><div><div class="reviewer-name">Happy Customer, Kirkland</div><div class="reviewer-loc">Via DexKnows</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--cream);padding:64px 24px;text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+      <h2 class="section-title">Join hundreds of satisfied customers</h2>
+      <p style="color:var(--text-mid);margin-bottom:28px;">Call today for a free estimate. We'll show up on time, do the job right, and leave your space clean.</p>
+      <a href="tel:2065790529" class="btn-primary">📞 Call 206-579-0529</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-logo">Bobby<span>T's</span> Plumbing</span>
+        <p class="footer-desc">Family-owned plumbing company serving North King & South Snohomish County since 2007.</p>
+        <a href="tel:2065790529" class="footer-phone">206-579-0529</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('reviews')">Reviews</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Hours</div>
+        <ul class="footer-links">
+          <li><a href="#">Mon–Fri: 8am – 5pm</a></li>
+          <li><a href="#">Saturday: 8am – 12pm</a></li>
+          <li><a href="#" style="color:var(--gold)">Emergency Available</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:2065790529">206-579-0529</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#1a78757878636e696a766f777873747d5a637b72757534797577">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Bobby T's Plumbing Inc.</span>
+      <span>License # BOBBYTP939BR</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: CONTACT
+═══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section class="contact-hero">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label" style="color:var(--gold);margin-bottom:14px;">Get In Touch</div>
+        <h1>Let's fix it together</h1>
+        <p>Free estimates, honest pricing, guaranteed work. Reach out and we'll get back to you fast.</p>
+
+        <div class="contact-detail">
+          <div class="cd-icon">📞</div>
+          <div>
+            <div class="cd-label">Phone</div>
+            <div class="cd-value"><a href="tel:2065790529">206-579-0529</a></div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">✉️</div>
+          <div>
+            <div class="cd-label">Email</div>
+            <div class="cd-value"><a href="/cdn-cgi/l/email-protection#3a58555858434e494a564f575853545d7a435b52555514595557"><span class="__cf_email__" data-cfemail="dfbdb0bdbda6abacafb3aab2bdb6b1b89fa6beb7b0b0f1bcb0b2">[email&#160;protected]</span></a></div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">📍</div>
+          <div>
+            <div class="cd-label">Service Area</div>
+            <div class="cd-value">North King & South Snohomish County, WA</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">🕐</div>
+          <div>
+            <div class="cd-label">Hours of Operation</div>
+            <div>
+              <table class="hours-table">
+                <tr><td>Monday – Friday</td><td>8:00 AM – 5:00 PM</td></tr>
+                <tr><td>Saturday</td><td>8:00 AM – 12:00 PM</td></tr>
+                <tr><td>Sunday</td><td>Closed</td></tr>
+              </table>
+              <div class="emergency-badge">Emergency services available</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:28px;">
+          <div class="pay-label">We Accept</div>
+          <div class="payment-icons">
+            <div class="pay-badge">💳 Visa</div>
+            <div class="pay-badge">💳 Mastercard</div>
+            <div class="pay-badge">💵 Cash</div>
+            <div class="pay-badge">📝 Check</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact-form-card">
+          <div class="form-title">Request a Free Estimate</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Bob">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="206-555-0100">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="you@email.com">
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service">
+              <option value="">Select a service...</option>
+              <option>Drain Cleaning</option>
+              <option>Water Heater Repair or Install</option>
+              <option>Leak Detection</option>
+              <option>Bath or Kitchen Remodel</option>
+              <option>Repiping</option>
+              <option>Sewer Line Repair</option>
+              <option>Water Main</option>
+              <option>Emergency Service</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="city">Your City</label>
+            <input type="text" id="city" placeholder="Shoreline, Edmonds, Seattle...">
+          </div>
+          <div class="form-group">
+            <label for="msg">Describe the Issue</label>
+            <textarea id="msg" placeholder="Tell us what's going on — the more detail, the better estimate we can give..."></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()">Send My Request →</button>
+          <div class="form-success" id="formSuccess">✅ Message sent! We'll be in touch soon. For urgent needs, call 206-579-0529.</div>
+          <p style="font-size:12px;color:var(--text-light);margin-top:14px;text-align:center;">We typically respond within a few hours during business hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- License / BBB -->
+  <section style="background:var(--cream);padding:48px 24px;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;gap:24px;flex-wrap:wrap;align-items:center;justify-content:center;">
+      <div style="text-align:center;padding:20px 32px;background:white;border-radius:var(--radius);border:1px solid var(--cream-dark);min-width:180px;">
+        <div style="font-size:28px;margin-bottom:6px;">🏆</div>
+        <div style="font-weight:700;font-size:15px;color:var(--navy);">BBB Accredited</div>
+        <div style="font-size:13px;color:var(--text-light);">A+ Rating — Western WA</div>
+      </div>
+      <div style="text-align:center;padding:20px 32px;background:white;border-radius:var(--radius);border:1px solid var(--cream-dark);min-width:180px;">
+        <div style="font-size:28px;margin-bottom:6px;">🛡️</div>
+        <div style="font-weight:700;font-size:15px;color:var(--navy);">Licensed, Bonded & Insured</div>
+        <div style="font-size:13px;color:var(--text-light);">Lic# BOBBYTP939BR</div>
+      </div>
+      <div style="text-align:center;padding:20px 32px;background:white;border-radius:var(--radius);border:1px solid var(--cream-dark);min-width:180px;">
+        <div style="font-size:28px;margin-bottom:6px;">✅</div>
+        <div style="font-weight:700;font-size:15px;color:var(--navy);">1-Year Warranty</div>
+        <div style="font-size:13px;color:var(--text-light);">Written guarantee on all work</div>
+      </div>
+      <div style="text-align:center;padding:20px 32px;background:white;border-radius:var(--radius);border:1px solid var(--cream-dark);min-width:180px;">
+        <div style="font-size:28px;margin-bottom:6px;">💰</div>
+        <div style="font-weight:700;font-size:15px;color:var(--navy);">Free Estimates</div>
+        <div style="font-size:13px;color:var(--text-light);">No obligation, no surprises</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-logo">Bobby<span>T's</span> Plumbing</span>
+        <p class="footer-desc">Family-owned plumbing company serving North King & South Snohomish County since 2007.</p>
+        <a href="tel:2065790529" class="footer-phone">206-579-0529</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('reviews')">Reviews</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Hours</div>
+        <ul class="footer-links">
+          <li><a href="#">Mon–Fri: 8am – 5pm</a></li>
+          <li><a href="#">Saturday: 8am – 12pm</a></li>
+          <li><a href="#" style="color:var(--gold)">Emergency Available</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:2065790529">206-579-0529</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#7d1f121f1f04090e0d1108101f14131a3d041c151212531e1210">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Bobby T's Plumbing Inc.</span>
+      <span>License # BOBBYTP939BR</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
