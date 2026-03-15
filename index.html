@@ -592,6 +592,8 @@
     .discount-banner { font-size: 13px; gap: 8px; }
     .reviews-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr !important; }
+    .directions-grid { grid-template-columns: 1fr !important; }
   }
 
   /* ─── ANIMATIONS ─── */
@@ -621,6 +623,7 @@
     <li><a href="javascript:void(0)" class="active" id="nav-home" onclick="showPage('home')">Home</a></li>
     <li><a href="javascript:void(0)" id="nav-about" onclick="showPage('about')">About</a></li>
     <li><a href="javascript:void(0)" id="nav-services" onclick="showPage('services')">Services</a></li>
+    <li><a href="javascript:void(0)" id="nav-news" onclick="showPage('home');setTimeout(function(){document.getElementById('news-section').scrollIntoView({behavior:'smooth'})},100)">News</a></li>
     <li><a href="javascript:void(0)" id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li>
     <li><a href="javascript:void(0)" id="nav-contact" onclick="showPage('contact')">Contact</a></li>
   </ul>
@@ -635,6 +638,7 @@
   <a href="javascript:void(0)" onclick="showPage('home');toggleMenu()">Home</a>
   <a href="javascript:void(0)" onclick="showPage('about');toggleMenu()">About</a>
   <a href="javascript:void(0)" onclick="showPage('services');toggleMenu()">Services</a>
+  <a href="javascript:void(0)" onclick="showPage('home');toggleMenu();setTimeout(function(){document.getElementById('news-section').scrollIntoView({behavior:'smooth'})},150)">News</a>
   <a href="javascript:void(0)" onclick="showPage('reviews');toggleMenu()">Reviews</a>
   <a href="javascript:void(0)" onclick="showPage('contact');toggleMenu()">Contact</a>
   <a href="tel:2065790529" class="mobile-cta">📞 Call 206-579-0529</a>
@@ -824,6 +828,142 @@
       </div>
     </div>
   </section>
+
+  <!-- NEWS & BLOG -->
+  <section class="section services-bg" id="news-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Latest News & Tips</div>
+        <h2 class="section-title">News, specials & helpful tips</h2>
+        <p class="section-sub">Stay up to date with plumbing advice straight from Bobby T's.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+
+        <!-- News card -->
+        <div style="background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="background:rgba(42,127,193,0.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;">📰</div>
+            <div style="font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.1em;">News</div>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;">New Service: Water Service Installation</h3>
+          <p style="font-size:15px;color:var(--text-mid);line-height:1.7;">We now offer Water Service Installation from meter to house — and we use products that come with manufacturer warranties for added peace of mind.</p>
+        </div>
+
+        <!-- Tip 1 -->
+        <div style="background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="background:rgba(52,168,83,0.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;">🌿</div>
+            <div style="font-size:12px;font-weight:700;color:#2e8b47;text-transform:uppercase;letter-spacing:0.1em;">Eco Tip</div>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;">Skip the drain cleaning liquids</h3>
+          <p style="font-size:15px;color:var(--text-mid);line-height:1.7;">Chemical drain cleaners chew up your pipes over time — especially metal ones. They're also harmful to the water supply. Bobby T's always uses eco-friendly methods to clear drains safely.</p>
+        </div>
+
+        <!-- Tip 2 -->
+        <div style="background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="background:rgba(232,168,50,0.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;">🥦</div>
+            <div style="font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;">Eco Tip</div>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;">Garbage disposal advice</h3>
+          <p style="font-size:15px;color:var(--text-mid);line-height:1.7;">Even with a disposal, scrape large food scraps into compost or trash. Disposals weren't built to handle big chunks at once — over time it causes build-up and costly blockages. Compost is better for your pipes and the planet.</p>
+        </div>
+
+        <!-- Tip 3 -->
+        <div style="background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="background:rgba(220,50,50,0.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;">⚠️</div>
+            <div style="font-size:12px;font-weight:700;color:#cc3333;text-transform:uppercase;letter-spacing:0.1em;">Warning</div>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;">Avoid unclogging products</h3>
+          <p style="font-size:15px;color:var(--text-mid);line-height:1.7;">These products are corrosive by design. If they don't clear the clog, they just sit in your pipe causing damage. Call Bobby T's instead — we clear pipes the right way, without harming your home or the environment.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FILE UPLOAD & DIRECTIONS -->
+  <section class="section">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+
+        <!-- File Upload -->
+        <div style="background:var(--cream);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:32px;">
+          <div class="section-label">Share a File</div>
+          <h2 class="section-title" style="font-size:26px;margin-bottom:10px;">Send us your project details</h2>
+          <p style="font-size:15px;color:var(--text-mid);line-height:1.65;margin-bottom:24px;">Have a photo of the issue, a floor plan, or an insurance document? Upload it here and we'll review it before your appointment.</p>
+          <div id="drop-zone" style="border:2px dashed var(--cream-dark);border-radius:var(--radius-sm);padding:32px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--white);" ondragover="event.preventDefault();this.style.borderColor='var(--blue)'" ondragleave="this.style.borderColor='var(--cream-dark)'" ondrop="handleDrop(event)">
+            <div style="font-size:36px;margin-bottom:10px;">📎</div>
+            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:6px;">Drag & drop your file here</div>
+            <div style="font-size:13px;color:var(--text-light);margin-bottom:16px;">or click to browse — PDF, JPG, PNG up to 10MB</div>
+            <input type="file" id="file-input" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this)">
+            <button onclick="document.getElementById('file-input').click()" style="background:var(--blue);color:white;border:none;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;">Browse Files</button>
+          </div>
+          <div id="file-name" style="display:none;margin-top:12px;padding:12px 16px;background:rgba(42,127,193,0.08);border-radius:var(--radius-sm);font-size:14px;color:var(--blue);font-weight:600;"></div>
+          <p style="font-size:12px;color:var(--text-light);margin-top:12px;">After uploading, email the file to <a href="mailto:bobbytsplumbing@yahoo.com" style="color:var(--blue);">bobbytsplumbing@yahoo.com</a> with your name and phone number.</p>
+        </div>
+
+        <!-- Directions -->
+        <div style="background:var(--navy);border-radius:var(--radius);padding:32px;color:white;">
+          <div style="font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Find Us</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:800;margin-bottom:10px;color:white;">Get directions to Bobby T's</h2>
+          <p style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:24px;">We're based in Shoreline, WA and serve all of North King & South Snohomish County. Enter your address below for turn-by-turn directions.</p>
+
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="background:rgba(255,255,255,0.08);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📍</div>
+              <div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Based in</div>
+                <div style="font-size:15px;font-weight:600;color:white;">Shoreline, WA</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="background:rgba(255,255,255,0.08);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🗺️</div>
+              <div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Service Area</div>
+                <div style="font-size:15px;font-weight:600;color:white;">North King & South Snohomish County</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <input type="text" id="directions-input" placeholder="Enter your address..." style="padding:12px 16px;border-radius:var(--radius-sm);border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;font-family:'Manrope',sans-serif;outline:none;width:100%;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+            <button onclick="getDirections()" style="background:var(--gold);color:var(--navy);border:none;padding:13px;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Get Directions →</button>
+            <a href="https://maps.google.com/?q=Shoreline,WA" target="_blank" style="display:block;text-align:center;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;padding-top:4px;">Or open Shoreline, WA in Google Maps ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function handleFile(input) {
+      if (input.files && input.files[0]) {
+        var name = input.files[0].name;
+        var el = document.getElementById('file-name');
+        el.style.display = 'block';
+        el.textContent = '✅ File selected: ' + name;
+      }
+    }
+    function handleDrop(e) {
+      e.preventDefault();
+      var file = e.dataTransfer.files[0];
+      if (file) {
+        var el = document.getElementById('file-name');
+        el.style.display = 'block';
+        el.textContent = '✅ File selected: ' + file.name;
+        document.getElementById('drop-zone').style.borderColor = 'var(--cream-dark)';
+      }
+    }
+    function getDirections() {
+      var addr = document.getElementById('directions-input').value.trim();
+      if (!addr) { alert('Please enter your address first.'); return; }
+      var url = 'https://www.google.com/maps/dir/' + encodeURIComponent(addr) + '/Shoreline,+WA';
+      window.open(url, '_blank');
+    }
+  </script>
 
   <!-- CTA BAND -->
   <section style="background:var(--cream);padding:64px 24px;">
